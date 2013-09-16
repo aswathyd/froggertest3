@@ -6,18 +6,8 @@ $(document).ready(function() {initHighScores();startGame();});
 function startGame() {sprites = new Image();sprites.src = "assetsCp/frogger_sprites.png";deadFrogSprite = new Image();
 deadFrogSprite.src = "assetsCp/dead_frog.png";
 $(sprites).load(function() {return;});
-$(deadFrogSprite).load(function() {
-		canvas = $("#game")[0];
-		if (canvas.getContext) {
-			init();
-			ctx = canvas.getContext("2d");
-			runGame();
-			eventListener();
-		} else {
-			alert("Your browser doesn't support the game. Sorry!");
-		}
-	});
-}
+$(deadFrogSprite).load(function() {canvas = $("#game")[0];if (canvas.getContext) {init();ctx = canvas.getContext("2d");
+runGame();eventListener();} else {alert("Your browser doesn't support the game. Sorry!");}});}
 function init() {
 	initVariables();
 	initObjects();
