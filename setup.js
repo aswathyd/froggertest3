@@ -27,115 +27,96 @@ function initBadlands() {
 badlands = new Array();badlands[0] = {y: 0,width: 35,height: 95,num: 4,xCoords: new Array()}
 for (i = 0; i < badlands[0].num; i++) {badlands[0].xCoords[i] = 52 + i * 85;}}
 function initFly() {
-	fly = new Array();
-	fly[0] = {
-		y: 80,
-		width: 16,
-		height: 16,
-		num: 1,
-		isActive: Math.floor(Math.random() * 100) == 1,
-		intervalsActive: Math.floor(Math.random() * 10) * 3 + 100,
-		xCoords: new Array()
-	}
-	if (fly[0].isActive) {
-		fly[0].xCoords[0] = 18 + (Math.floor(Math.random() * 5)) * 85;
-	} else {
-		fly[0].xCoords[0] = -1000;
-	}
-}
-
+fly = new Array();
+fly[0] = {
+y: 80,
+width: 16,
+height: 16,
+num: 1,
+isActive: Math.floor(Math.random() * 100) == 1,
+intervalsActive: Math.floor(Math.random() * 10) * 3 + 100,
+xCoords: new Array()}
+if (fly[0].isActive) {
+fly[0].xCoords[0] = 18 + (Math.floor(Math.random() * 5)) * 85;
+} else {
+fly[0].xCoords[0] = -1000;}}
 function initFrogsHome() {
-	frogsHome = new Array();
-}
+frogsHome = new Array();}
 function initClickDivs() {
-	initClickDiv("Play");
-	initClickDiv("Submit");
-}
+initClickDiv("Play");
+initClickDiv("Submit");}
 function initClickDiv(name) {
-	if (document.getElementById("click" + name) != null) {
-		return;
-	}
-	var div = document.createElement("div");
-	div.id = "click" + name;
-	document.getElementById("game_div").appendChild(div);
-}
+if (document.getElementById("click" + name) != null) {
+return;}
+var div = document.createElement("div");
+div.id = "click" + name;
+document.getElementById("game_div").appendChild(div);}
 function getLocalStorage(name) {
-	for (key in localStorage) {
-		if (key == name) {
-			return localStorage[key];
-		}
-	}
-	return 0;
-}
+for (key in localStorage) {
+if (key == name) {
+return localStorage[key];}}
+return 0;}
 function initHighScores() {
-	var div = document.createElement("div");
-	initHighScoresHeader(div);
-	div.id = "highScores";
-	var scoresDiv = document.createElement("div");
-	scoresDiv.id = "scoresData";
-	$("body").append(div);
-	$(div).append(scoresDiv);
-}
+var div = document.createElement("div");
+initHighScoresHeader(div);
+div.id = "highScores";
+var scoresDiv = document.createElement("div");
+scoresDiv.id = "scoresData";
+$("body").append(div);
+$(div).append(scoresDiv);}
 function loadHighScores() {
-	$("#scoresData").empty();
-	var getURL = "http://vast-tundra-5648.herokuapp.com/highscores.json";
-	$.get(getURL, {
-		game_title: "Frogger"
-	}, "json").done(function(data) {
-		for (var i in data) {
-			addHighScore(data[i], Number(i) + 1);
-		}
-	});
-}
+$("#scoresData").empty();
+var getURL = "http://vast-tundra-5648.herokuapp.com/highscores.json";
+$.get(getURL, {
+game_title: "Frogger"
+}, "json").done(function(data) {
+for (var i in data) {
+addHighScore(data[i], Number(i) + 1);}});}
 function initHighScoresHeader(div) {
-	var header = document.createElement("div");
-	header.id = "highScoresHeader";
-	var rank = document.createElement("div");
-	rank.innerHTML = "<h3>Rank</h3>";
-	var username = document.createElement("div");
-	username.innerHTML = "<h3>Username</h3>";
-	var scoreDiv = document.createElement("div");
-	scoreDiv.innerHTML = "<h3>Score</h3>";
-	var dateDiv = document.createElement("div");
-	dateDiv.innerHTML = "<h3>Date</h3>";
-	$(div).append(header);
-	$(header).append(rank);
-	$(header).append(username);
-	$(header).append(scoreDiv);
-	$(header).append(dateDiv);
-}
+var header = document.createElement("div");
+header.id = "highScoresHeader";
+var rank = document.createElement("div");
+rank.innerHTML = "<h3>Rank</h3>";
+var username = document.createElement("div");
+username.innerHTML = "<h3>Username</h3>";
+var scoreDiv = document.createElement("div");
+scoreDiv.innerHTML = "<h3>Score</h3>";
+var dateDiv = document.createElement("div");
+dateDiv.innerHTML = "<h3>Date</h3>";
+$(div).append(header);
+$(header).append(rank);
+$(header).append(username);
+$(header).append(scoreDiv);
+$(header).append(dateDiv);}
 function addHighScore(data, rank) {
-	var row = document.createElement("div");
-	row.classList.add("highScore");
-	var rankDiv = document.createElement("div");
-	rankDiv.innerHTML = "<p>" + rank + ".</p>";
-	rankDiv.classList.add("rank");
-	var username = document.createElement("div");
-	username.innerHTML = "<p>" + data.username + "</p>";
-	username.classList.add("username");
-	var scoreDiv = document.createElement("div");
-	scoreDiv.innerHTML = "<p>" + data.score + "</p>";
-	scoreDiv.classList.add("score");
-	var date = new Date(data.created_at);
-	var dateDiv = document.createElement("div");
-	dateDiv.innerHTML = "<p>" + (date.getMonth() + 1) +
-				"/" + date.getDate() + "/"
-				+ date.getFullYear() + "</p>";
-	dateDiv.classList.add("date");
-	$("#scoresData").append(row);
-	$(row).append(rankDiv);
-	$(row).append(username);
-	$(row).append(scoreDiv);
-	$(row).append(dateDiv);
-}
+var row = document.createElement("div");
+row.classList.add("highScore");
+var rankDiv = document.createElement("div");
+rankDiv.innerHTML = "<p>" + rank + ".</p>";
+rankDiv.classList.add("rank");
+var username = document.createElement("div");
+username.innerHTML = "<p>" + data.username + "</p>";
+username.classList.add("username");
+var scoreDiv = document.createElement("div");
+scoreDiv.innerHTML = "<p>" + data.score + "</p>";
+scoreDiv.classList.add("score");
+var date = new Date(data.created_at);
+var dateDiv = document.createElement("div");
+dateDiv.innerHTML = "<p>" + (date.getMonth() + 1) +"/" + date.getDate() + "/"+ date.getFullYear() + "</p>";
+dateDiv.classList.add("date");
+$("#scoresData").append(row);
+$(row).append(rankDiv);
+$(row).append(username);
+$(row).append(scoreDiv);
+$(row).append(dateDiv);}
 function objectArray(sX, sY, w, h, y, n, s, d) {
-	this.spriteX = sX;
-	this.spriteY = sY;
-	this.width = w;
-	this.height = h;
-	this.y = y;
-	this.num = n;
-	this.speed = s;
+this.spriteX = sX;
+this.spriteY = sY;
+this.width = w;
+this.height = h;
+this.y = y;
+this.num = n;
+this.speed = s;
 	this.direction = d;
 	this.xCoords = new Array();
 	if (this.direction == directions.left) {
