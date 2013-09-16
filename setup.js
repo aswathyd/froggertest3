@@ -12,61 +12,20 @@ function init() {initVariables();initObjects();initClickDivs();loadHighScores();
 function initVariables() {timeInterval = 40;score = 0;highScore = getLocalStorage("highScore");ifNewHighScore = false;
 seconds = 30;time = seconds * (1000 / timeInterval);level = 1;numLives = 5;numHome = 0;movePause = 0;deathPause = 0;
 isUpArrow = false;clickOn = false;}
-function initObjects() {
-	initFrogger();
-	initVehicles();
-	initLogs();
-	initFly();
-	initInlets();
-	initBadlands();
-	initFrogsHome();
-}
-function initFrogger() {
-	frogger = new frog(directions.up);
-	frogger.reset();
-}
-function initVehicles() {
-	vehicles = new Array();
-	vehicles.push(vehicleLibrary.pink);
-	vehicles.push(vehicleLibrary.white);
-	vehicles.push(vehicleLibrary.yellow);
-	vehicles.push(vehicleLibrary.tank);
-	vehicles.push(vehicleLibrary.truck);
-}
+function initObjects() {initFrogger();initVehicles();initLogs();initFly();initInlets();initBadlands();initFrogsHome();}
+function initFrogger() {frogger = new frog(directions.up);frogger.reset();}
+function initVehicles() {vehicles = new Array();vehicles.push(vehicleLibrary.pink);
+vehicles.push(vehicleLibrary.white);vehicles.push(vehicleLibrary.yellow);vehicles.push(vehicleLibrary.tank);
+vehicles.push(vehicleLibrary.truck);}
 function initLogs() {
-	logs = new Array();	
-	logs.push(logLibrary.longRight);
-	logs.push(logLibrary.shortLeft);
-	logs.push(logLibrary.mediumRight);
-	logs.push(logLibrary.longLeft);
-	logs.push(logLibrary.shortRight);
-}
+logs = new Array();logs.push(logLibrary.longRight);logs.push(logLibrary.shortLeft);
+logs.push(logLibrary.mediumRight);logs.push(logLibrary.longLeft);logs.push(logLibrary.shortRight);}
 function initInlets() {
-	inlets = new Array();
-	inlets[0] = {
-		y: 70,
-		width: 30,
-		height: 30,
-		num: 5,
-		xCoords: new Array()
-	}
-	for (i = 0; i < inlets[0].num; i++) {
-		inlets[0].xCoords[i] = 12 + i * 85;
-	}
-}
+inlets = new Array();inlets[0] = {y: 70,width: 30,height: 30,num: 5,xCoords: new Array()}
+for (i = 0; i < inlets[0].num; i++) {inlets[0].xCoords[i] = 12 + i * 85;}}
 function initBadlands() {
-	badlands = new Array();
-	badlands[0] = {
-		y: 0,
-		width: 35,
-		height: 95,
-		num: 4,
-		xCoords: new Array()
-	}
-	for (i = 0; i < badlands[0].num; i++) {
-		badlands[0].xCoords[i] = 52 + i * 85;
-	}
-}
+badlands = new Array();badlands[0] = {y: 0,width: 35,height: 95,num: 4,xCoords: new Array()}
+for (i = 0; i < badlands[0].num; i++) {badlands[0].xCoords[i] = 52 + i * 85;}}
 function initFly() {
 	fly = new Array();
 	fly[0] = {
