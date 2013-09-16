@@ -19,9 +19,9 @@ $(document).ready(function() {
 });
 function startGame() {
 	sprites = new Image();
-	sprites.src = "assets/frogger_sprites.png";
+	sprites.src = "assetsCp/frogger_sprites.png";
 	deadFrogSprite = new Image();
-	deadFrogSprite.src = "assets/dead_frog.png";
+	deadFrogSprite.src = "assetsCp/dead_frog.png";
 	$(sprites).load(function() {
 		return;
 	});
@@ -44,7 +44,7 @@ function init() {
 	loadHighScores();
 }
 function initVariables() {
-	timeInterval = 40;	// milliseconds	
+	timeInterval = 40;		
 	score = 0;
 	highScore = getLocalStorage("highScore");
 	ifNewHighScore = false;
